@@ -24,8 +24,7 @@ def get_api_token_price(token_id, start_block, end_block=-1):
         return time_price
 
     api_token_price = pd.DataFrame(map(format_datetime_str, token_price), columns=['date', 'price'])
-
-    api_token_price['date'] = pd.to_datetime(api_token_price['date'], format='%m/%d/%Y  %H:%M:%S')
-    api_token_price['date'] = api_token_price['date'].dt.strftime('%m/%d/%Y')   
-
+    
+    api_token_price['date'] = pd.to_datetime(api_token_price['date'], format='%m/%d/%Y  %H:%M:%S', utc=True)
+    
     return api_token_price
